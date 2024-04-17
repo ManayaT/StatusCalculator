@@ -39,22 +39,29 @@ public class Manager {
 
                     writer.write("individual,HP,ATK,Mgc,Def,Agi\n");
 
-                    for (int individual=0; individual <= 40; individual++){
+                    for (int individual=0; individual <= 80; individual++){
 
                         ArrayList<String> statusList = new ArrayList<>();
 
                         statusList.add(Integer.toString(individual));
 
-                        for (int i=1; i <= 5; i++){
-                            statusList.add(Integer.toString(calculate.status(Integer.parseInt(cols[i]), Integer.parseInt(cols[i +5]), manager.getLevel(), individual, manager.getBonus())));
-                        }
+                        if (individual <= 40){ //体力以外の理論的に最大の個体値まで計算
+                            for (int i=1; i <= 5; i++){
+                                statusList.add(Integer.toString(calculate.status(Integer.parseInt(cols[i]), Integer.parseInt(cols[i +5]), manager.getLevel(), individual, manager.getBonus())));
+                            }
 
-                        writer.write(statusList.get(0) + "," +
-                                statusList.get(1) + "," +
-                                statusList.get(2) + "," +
-                                statusList.get(3) + "," +
-                                statusList.get(4) + "," +
-                                statusList.get(5) +"\n");
+                            writer.write(statusList.get(0) + "," + //individual
+                                    statusList.get(1) + "," + //HP
+                                    statusList.get(2) + "," + //Atk
+                                    statusList.get(3) + "," + //Mgc
+                                    statusList.get(4) + "," + //Def
+                                    statusList.get(5) +"\n"); //Agi
+                        } else { //個体値41~80までの計算を実行
+                            statusList.add(Integer.toString(calculate.status(Integer.parseInt(cols[1]), Integer.parseInt(cols[6]), manager.getLevel(), individual, manager.getBonus())));
+
+                            writer.write(statusList.get(0) + "," +
+                                    statusList.get(1) + "\n");
+                        }
                     }
                 } catch (IOException e) {
                     throw new UncheckedIOException(e);
