@@ -12,6 +12,6 @@ https://ja.wikipedia.org/wiki/妖怪ウォッチ2_元祖/本家/真打
 ・性格ボーナスは考慮しないものとしています（private final int bonus = 0;）<br>
 
 ## 参考
-・A・B個体値の値は、<br>
+・A・B個体値の値は<br>
 https://lms.netacad.com/course/view.php?id=2142149<br>
 で確認することができます。
